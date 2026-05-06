@@ -1,0 +1,21 @@
+{
+   "name": "B47 Hero Video",
+   "slug": "b47-hero-video",
+   "description": "A bold portfolio hero section with image, animated category text, and oversized brand typography.",
+   "html": "b47-hero-video.html",
+   "css": [
+     "assets/css/b47-hero-video.css"
+   ],
+   "js": [
+     "assets/js/b47-hero-video.js"
+   ],
+   "version": "1.0.0",
+   "shortcode": "base47_b47_hero_video",
+   "type": "hero",
+   "scope": "base47-widget-b47-hero-video",
+   "supports": {
+     "rtl": true,
+     "multiple_instances": true,
+     "responsive": true
+   }
+}

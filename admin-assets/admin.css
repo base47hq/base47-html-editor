@@ -1,0 +1,369 @@
+/* ============================================
+   Base47 HTML Editor – Admin Styles (v2.2.0)
+   ============================================ */
+
+/* -----------------------------------------------
+   Restore WP Admin sidebar & core UI fonts
+   Soft UI Dashboard CSS overrides body font-family
+   which bleeds into the WP sidebar/toolbar.
+   ----------------------------------------------- */
+#adminmenumain,
+#adminmenuback,
+#adminmenuwrap,
+#adminmenu,
+#adminmenu .wp-submenu,
+#wpadminbar,
+#wpadminbar .ab-top-menu,
+#wpfooter {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+}
+
+/* -------------------------------
+   General Wrapper & Titles
+   ------------------------------- */
+.base47-he-wrap {
+    width: 100%;
+    max-width: 100%;
+    margin-top: 25px;
+}
+
+.base47-he-title {
+    font-size: 20px;
+    font-weight: 600;
+    margin-bottom: 14px;
+}
+
+/* ===============================
+   Shortcodes Page Layout (GRID)
+   =============================== */
+.base47-he-template-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 18px;
+    margin-top: 20px;
+}
+
+/* Box */
+.base47-he-template-box {
+    background: #fff;
+    border: 1px solid #e7e7e7;
+    border-radius: 8px;
+    padding: 14px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.04);
+    transition: 0.2s;
+}
+
+.base47-he-template-box:hover {
+    border-color: #ccc;
+    transform: translateY(-2px);
+}
+
+/* Filename */
+.base47-he-template-box strong {
+    font-size: 14px;
+    color: #333;
+}
+
+/* Shortcode */
+.base47-he-template-box code {
+    font-size: 12px;
+    background: #f7f7f7;
+    padding: 4px 8px;
+    border-radius: 4px;
+    display: inline-block;
+}
+
+/* Preview (LAZY IFRAME) */
+.base47-he-template-thumb {
+    margin-top: 6px;
+}
+
+.base47-he-template-thumb iframe.base47-he-template-iframe {
+    width: 100%;
+    height: 260px;
+    border: 1px solid #eee;
+    border-radius: 6px;
+    background: #fafafa;
+}
+
+/* Actions */
+.base47-he-template-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-top: 4px;
+}
+
+.base47-preview-btn {
+    width: 100%;
+    margin-top: 6px;
+}
+
+/* ============================
+   LAZY PREVIEW MODAL
+   ============================ */
+
+#base47-modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.50);
+    display: none;
+    z-index: 999999;
+    align-items: center;
+    justify-content: center;
+    backdrop-filter: blur(3px);
+}
+
+#base47-modal-wrapper {
+    width: 85%;
+    height: 85%;
+    max-width: 1400px;
+    background: #fff;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.25);
+    display: flex;
+    flex-direction: column;
+}
+
+/* Header */
+#base47-modal-header {
+    padding: 12px 16px;
+    background: #1d2327;
+    color: #fff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#base47-modal-title {
+    font-size: 15px;
+    font-weight: 600;
+}
+
+#base47-modal-close {
+    background: none;
+    border: none;
+    color: #fff;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+/* Body */
+#base47-modal-body {
+    flex: 1;
+    background: #f3f4f5;
+}
+
+#base47-modal-iframe {
+    border: none;
+    width: 100%;
+    height: 100%;
+}
+
+/* ===============================
+   Live Editor
+   =============================== */
+.base47-he-editor-topbar {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  margin-bottom: 10px;
+  flex-wrap: wrap;
+  justify-content: flex-start; /* FIX */
+}
+
+.base47-he-editor-topbar form {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+}
+
+.base47-he-editor-topbar select {
+  min-width: 160px;
+}
+
+.base47-he-editor-shell {
+  display: flex;
+  justify-content: flex-start;
+  align-items: stretch;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  overflow: hidden;
+  background: #fafafa;
+  width: 100%;
+  max-width: 100%;
+  height: calc(100vh - 160px);
+  margin: 30px 0;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+  position: relative;
+  min-height: 700px;
+}
+
+.base47-he-editor-left {
+  flex: 0 0 50%;
+  background: #f8f8f8;
+  border-right: 1px solid #ddd;
+  display: flex;
+  flex-direction: column;
+  min-width: 360px;
+  transition: flex-basis 0.2s ease;
+}
+
+#base47-he-code {
+  flex: 1;
+  width: 100%;
+  border: none;
+  outline: none;
+  font-family: "Courier New", monospace;
+  font-size: 13px;
+  line-height: 1.5;
+  padding: 14px;
+  box-sizing: border-box;
+  resize: none;
+  background: #fdfdfd;
+  color: #222;
+}
+
+/* Drag divider */
+.base47-he-resizer {
+  flex: 0 0 6px;
+  width: 6px;
+  background: #e4e4e4;
+  cursor: ew-resize;
+  transition: background 0.2s ease;
+}
+.base47-he-resizer:hover { background: #b3b3b3; }
+
+.base47-he-editor-right {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  background: #fff;
+  overflow: hidden;
+}
+
+.base47-he-preview-toolbar {
+  display: flex;
+  justify-content: center;
+  gap: 6px;
+  padding: 10px;
+  background: #f3f3f3;
+  border-bottom: 1px solid #ddd;
+  position: sticky;
+  top: 0;
+  z-index: 2;
+}
+
+.base47-he-preview-wrap {
+  flex: 1;
+  overflow: auto;
+  background: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+#base47-he-preview {
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  background: #fff;
+  width: 100%;
+  height: 100%;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.04);
+  transition: width 0.3s ease, height 0.3s ease;
+}
+
+.preview-size-btn.active {
+  background: #2271b1;
+  border-color: #2271b1;
+  color: #fff;
+}
+
+/* Dragging class from JS */
+.base47-he-dragging #base47-he-preview {
+  pointer-events: none;
+}
+/* Responsive */
+@media (max-width: 1000px) {
+    .base47-he-editor-shell {
+        flex-direction: column;
+        height: auto;
+    }
+    .base47-he-resizer {
+        cursor: ns-resize;
+        width: 100%;
+        height: 6px;
+    }
+}
+
+.base47-tm-asset-modes {
+    margin-top: 12px;
+    padding-top: 10px;
+    border-top: 1px solid #eee;
+}
+
+.base47-tm-asset-modes .tm-mode {
+    display: flex;
+    align-items: center;
+    margin-bottom: 6px;
+    gap: 6px;
+    cursor: pointer;
+}
+
+/* ============================
+   NOTICE DISMISS BUTTON (X)
+   ============================ */
+
+.notice-dismiss-btn {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    background: rgba(0, 0, 0, 0.05);
+    border: none;
+    border-radius: 50%;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    z-index: 10;
+    padding: 0;
+}
+
+.notice-dismiss-btn .dashicons {
+    font-size: 18px;
+    width: 18px;
+    height: 18px;
+    color: rgba(0, 0, 0, 0.5);
+}
+
+.notice-dismiss-btn:hover {
+    background: rgba(0, 0, 0, 0.1);
+    transform: scale(1.1);
+}
+
+.notice-dismiss-btn:hover .dashicons {
+    color: rgba(0, 0, 0, 0.7);
+}
+
+.notice-dismiss-btn:active {
+    transform: scale(0.95);
+}
+
+/* For cards that need relative positioning */
+.dashboard-card,
+.base47-upgrade-cta-card,
+.license-hero-card {
+    position: relative;
+}
+
+.tm-hidden-manifest {
+    display: none;
+}

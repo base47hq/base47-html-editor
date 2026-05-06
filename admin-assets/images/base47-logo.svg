@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 140 40" fill="none">
+  <!-- Base47 Logo - WordPress Layout with Rounded Corners & Text -->
+  
+  <!-- Icon Part (WordPress Layout) -->
+  <g transform="translate(5, 8) scale(1.2)">
+    <!-- Left Column (tall) - Orange -->
+    <rect x="2" y="2" width="5.5" height="11.5" rx="0.8" fill="#fb6340"/>
+    <!-- Top Middle Square - Dark -->
+    <rect x="8" y="2" width="5.5" height="5.5" rx="0.8" fill="#32325d"/>
+    <!-- Middle Square - Dark -->
+    <rect x="8" y="8" width="5.5" height="5.5" rx="0.8" fill="#32325d"/>
+    <!-- Bottom Wide Rectangle - Orange -->
+    <rect x="2" y="14" width="11.5" height="4" rx="0.8" fill="#fb6340"/>
+    <!-- Right Column (tall) - Dark -->
+    <rect x="14" y="2" width="5.5" height="16" rx="0.8" fill="#32325d"/>
+  </g>
+  
+  <!-- Text Part "Base47" -->
+  <text x="45" y="27" font-family="Arial, sans-serif" font-size="18" font-weight="700" fill="#32325d">
+    Base47
+  </text>
+</svg>

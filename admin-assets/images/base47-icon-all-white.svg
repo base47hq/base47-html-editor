@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="none">
+  <!-- Base47 Icon All White - For Dashboard -->
+  
+  <!-- Left Column (tall) - White -->
+  <rect x="2" y="2" width="5.5" height="11.5" rx="0.8" fill="white"/>
+  
+  <!-- Top Middle Square - White -->
+  <rect x="8" y="2" width="5.5" height="5.5" rx="0.8" fill="white"/>
+  
+  <!-- Middle Square (below top) - White -->
+  <rect x="8" y="8" width="5.5" height="5.5" rx="0.8" fill="white"/>
+  
+  <!-- Bottom Wide Rectangle - White -->
+  <rect x="2" y="14" width="11.5" height="4" rx="0.8" fill="white"/>
+  
+  <!-- Right Column (tall) - White -->
+  <rect x="14" y="2" width="5.5" height="16" rx="0.8" fill="white"/>
+</svg>

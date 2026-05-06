@@ -1,0 +1,874 @@
+/**
+ * Live Editor Page - Beautiful Soft UI Design
+ * 
+ * Modern, dark-themed editor interface with smooth interactions
+ * Inspired by premium dashboard designs
+ * 
+ * @package Base47_HTML_Editor
+ * @since 2.9.8
+ */
+
+/* ========================================
+   DESIGN TOKENS
+   ======================================== */
+
+:root {
+    /* Colors */
+    --primary: #ff6b35;
+    --primary-dark: #e55a2b;
+    --primary-light: #ff8555;
+    --secondary: #2c3e50;
+    --secondary-light: #34495e;
+    --accent: #3498db;
+    --accent-light: #5dade2;
+    --success: #27ae60;
+    --warning: #f39c12;
+    --danger: #e74c3c;
+    
+    /* Backgrounds */
+    --bg-primary: #f5f7fa;
+    --bg-secondary: #ffffff;
+    --bg-tertiary: #ecf0f3;
+    --bg-dark: #2c3e50;
+    --bg-darker: #1a252f;
+    
+    /* Text */
+    --text-primary: #2c3e50;
+    --text-secondary: #7f8c8d;
+    --text-light: #bdc3c7;
+    --text-white: #ffffff;
+    
+    /* Borders & Shadows */
+    --border-color: #e0e6ed;
+    --border-light: #f0f3f7;
+    --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.08);
+    --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.12);
+    --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.15);
+    --shadow-xl: 0 12px 32px rgba(0, 0, 0, 0.18);
+    
+    /* Spacing & Radius */
+    --radius-sm: 4px;
+    --radius-md: 8px;
+    --radius-lg: 12px;
+    --radius-xl: 16px;
+    
+    /* Fonts */
+    --font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
+    --font-mono: 'Monaco', 'Menlo', 'Ubuntu Mono', 'Courier New', monospace;
+}
+
+/* ========================================
+   BASE STYLES
+   ======================================== */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body.wp-admin {
+    font-family: var(--font-family);
+}
+
+.base47-he-wrap.base47-editor-soft-ui {
+    font-family: var(--font-family) !important;
+    background: var(--bg-primary) !important;
+    padding: 2rem 2rem 2rem 0 !important;
+    margin-left: 0 !important;
+    max-width: 100% !important;
+}
+
+.wrap.base47-he-wrap.base47-editor-soft-ui {
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    max-width: 100% !important;
+    padding: 0 !important;
+}
+
+.base47-he-wrap.base47-editor-soft-ui > h1 {
+    display: none !important;
+}
+
+/* ========================================
+   HEADER
+   ======================================== */
+
+.base47-he-wrap.base47-editor-soft-ui .base47-editor-header-soft {
+    background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%) !important;
+    border-radius: var(--radius-xl) !important;
+    padding: 2.5rem 3rem !important;
+    margin: 2rem 2rem 2rem 0 !important;
+    box-shadow: var(--shadow-lg) !important;
+    position: relative;
+    overflow: hidden;
+    color: var(--text-white) !important;
+}
+
+.base47-editor-header-soft::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 300px;
+    height: 300px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    transform: translate(50%, -50%);
+}
+
+.header-content {
+    position: relative;
+    z-index: 1;
+}
+
+.base47-editor-header-soft h1 {
+    font-size: 1.75rem;
+    font-weight: 700;
+    margin: 0 0 0.5rem 0;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.base47-editor-header-soft h1 .dashicons {
+    font-size: 1.75rem;
+    width: 1.75rem;
+    height: 1.75rem;
+}
+
+.base47-editor-header-soft p {
+    font-size: 0.95rem;
+    margin: 0;
+    opacity: 0.95;
+}
+
+/* ========================================
+   CONTROLS BAR
+   ======================================== */
+
+.base47-he-wrap.base47-editor-soft-ui .base47-editor-controls {
+    background: var(--bg-secondary) !important;
+    border-radius: var(--radius-lg) !important;
+    padding: 1.5rem !important;
+    margin: 0 2rem 1.5rem 0 !important;
+    box-shadow: var(--shadow-sm) !important;
+    display: flex !important;
+    align-items: flex-end !important;
+    justify-content: space-between !important;
+    gap: 2rem !important;
+    flex-wrap: wrap !important;
+    border: 1px solid var(--border-light) !important;
+}
+
+.controls-left {
+    flex: 1;
+    min-width: 300px;
+}
+
+.controls-right {
+    display: flex;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+}
+
+.editor-selectors {
+    display: flex;
+    gap: 2rem;
+    flex-wrap: wrap;
+}
+
+.selector-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    min-width: 260px;
+    flex: 1;
+}
+
+.selector-group label {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.selector-group label .dashicons {
+    font-size: 1.125rem;
+    width: 1.125rem;
+    height: 1.125rem;
+    color: var(--primary);
+}
+
+.editor-select {
+    padding: 1rem 1.25rem;
+    border: 2px solid var(--border-color);
+    border-radius: var(--radius-md);
+    font-size: 1rem;
+    font-weight: 500;
+    font-family: var(--font-family);
+    color: var(--text-primary);
+    background: var(--bg-secondary);
+    transition: all 0.2s ease;
+    cursor: pointer;
+}
+
+.editor-select:hover {
+    border-color: var(--primary);
+    background: var(--bg-tertiary);
+}
+
+.editor-select:focus {
+    outline: none;
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(255, 107, 53, 0.15);
+}
+
+/* ========================================
+   BUTTONS
+   ======================================== */
+
+.editor-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.5rem;
+    border-radius: var(--radius-md);
+    font-weight: 600;
+    font-size: 0.875rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    border: none;
+    font-family: var(--font-family);
+    white-space: nowrap;
+}
+
+.editor-btn .dashicons {
+    font-size: 1rem;
+    width: 1rem;
+    height: 1rem;
+}
+
+.editor-btn-primary {
+    background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+    color: var(--text-white);
+    box-shadow: var(--shadow-sm);
+}
+
+.editor-btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+}
+
+.editor-btn-primary:active {
+    transform: translateY(0);
+}
+
+.editor-btn-secondary {
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+    color: var(--text-primary);
+}
+
+.editor-btn-secondary:hover {
+    background: var(--bg-tertiary);
+    border-color: var(--primary);
+}
+
+.editor-btn-info {
+    background: var(--accent);
+    color: var(--text-white);
+    box-shadow: var(--shadow-sm);
+}
+
+.editor-btn-info:hover {
+    background: var(--accent-light);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+}
+
+/* ========================================
+   EDITOR SHELL
+   ======================================== */
+
+.base47-he-wrap.base47-editor-soft-ui .base47-editor-shell-soft {
+    background: var(--bg-secondary) !important;
+    border-radius: var(--radius-lg) !important;
+    box-shadow: var(--shadow-sm) !important;
+    overflow: hidden !important;
+    border: 1px solid var(--border-light) !important;
+    display: flex !important;
+    height: 800px !important;
+    min-height: 800px !important;
+    margin: 0 2rem 1.5rem 0 !important;
+}
+
+.base47-editor-panel {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    background: var(--bg-secondary);
+}
+
+/* Mode Switcher - WHITE BACKGROUND */
+.base47-editor-mode-switcher {
+    display: flex;
+    gap: 0.75rem;
+    padding: 1.25rem 1.5rem;
+    background: #ffffff !important;
+    border-bottom: 1px solid var(--border-light);
+    justify-content: center;
+    min-height: 76px;
+    align-items: center;
+}
+
+.editor-mode-btn,
+.base47-he-mode-btn {
+    display: inline-flex !important;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.5rem;
+    border-radius: var(--radius-md);
+    font-weight: 600;
+    font-size: 0.875rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    border: 2px solid #ddd !important;
+    background: #ffffff !important;
+    color: #666 !important;
+    font-family: var(--font-family);
+}
+
+.editor-mode-btn .dashicons,
+.base47-he-mode-btn .dashicons {
+    font-size: 1rem;
+    width: 1rem;
+    height: 1rem;
+}
+
+.editor-mode-btn:hover,
+.base47-he-mode-btn:hover {
+    border-color: #ff6b35 !important;
+    color: #333 !important;
+}
+
+.editor-mode-btn.mode-active,
+.base47-he-mode-btn.mode-active {
+    background: #ff6b35 !important;
+    color: #ffffff !important;
+    border-color: #ff6b35 !important;
+    box-shadow: 0 2px 8px rgba(255, 107, 53, 0.3) !important;
+}
+
+/* Monaco Editor */
+.base47-monaco-container-soft {
+    flex: 1;
+    min-height: 0;
+    height: 100%;
+    min-height: 700px;
+    position: relative;
+    background: #1e1e1e;
+}
+
+.base47-monaco-container-soft .monaco-editor {
+    background: #1e1e1e !important;
+    height: 100% !important;
+}
+
+/* Classic Editor */
+.base47-classic-editor-soft {
+    width: 100% !important;
+    height: 100% !important;
+    min-height: 700px !important;
+    padding: 1.5rem;
+    border: none;
+    font-family: var(--font-mono);
+    font-size: 14px;
+    line-height: 1.6;
+    resize: none;
+    background: #1e1e1e;
+    color: #d4d4d4;
+}
+
+.base47-classic-editor-soft:focus {
+    outline: none;
+}
+
+/* Resizer - THIN SOFT LINE */
+#base47-he-resizer,
+.base47-editor-resizer,
+.b47-editor-resizer {
+    width: 6px !important;
+    min-width: 6px !important;
+    max-width: 6px !important;
+    background: #ddd !important;
+    cursor: col-resize !important;
+    transition: background 0.2s ease;
+    position: relative;
+    display: block !important;
+    flex-shrink: 0 !important;
+}
+
+#base47-he-resizer:hover,
+.base47-editor-resizer:hover,
+.b47-editor-resizer:hover {
+    background: #ff6b35 !important;
+}
+
+/* Dragging state */
+body.base47-he-dragging {
+    cursor: col-resize !important;
+    user-select: none !important;
+}
+
+body.base47-he-dragging * {
+    cursor: col-resize !important;
+    user-select: none !important;
+}
+
+/* Preview Panel */
+.base47-editor-preview {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    background: var(--bg-secondary);
+}
+
+.base47-editor-preview-toolbar {
+    display: flex;
+    gap: 0.75rem;
+    padding: 1.25rem 1.5rem;
+    background: var(--bg-secondary);
+    border-bottom: 1px solid var(--border-light);
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    min-height: 76px;
+}
+
+.preview-size-btn {
+    padding: 0.75rem 1.5rem;
+    font-size: 0.875rem;
+    font-weight: 600;
+    border: 2px solid #ddd;
+    background: #ffffff;
+    color: #666;
+}
+
+.preview-size-btn:hover {
+    border-color: #ff6b35;
+    color: #333;
+}
+
+.preview-size-btn.active {
+    background: #ff6b35;
+    color: #ffffff;
+    border-color: #ff6b35;
+    box-shadow: 0 2px 8px rgba(255, 107, 53, 0.3);
+}
+
+.base47-he-preview-wrap {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: stretch;
+    width: 100%;
+    transition: width 0.3s ease;
+    background: var(--bg-secondary);
+}
+
+.base47-he-preview-wrap iframe {
+    width: 100%;
+    border: none;
+    background: var(--bg-secondary);
+}
+
+/* ========================================
+   SHORTCUTS PANEL
+   ======================================== */
+
+.base47-editor-shortcuts-panel {
+    background: var(--bg-secondary);
+    border-radius: var(--radius-lg);
+    padding: 2rem;
+    margin: 2rem 2rem 2rem 0;
+    box-shadow: var(--shadow-sm);
+    border: 1px solid var(--border-light);
+}
+
+.shortcuts-title {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 1.5rem;
+}
+
+.shortcuts-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+}
+
+.shortcut-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem;
+    background: var(--bg-tertiary);
+    border-radius: var(--radius-md);
+    border: 1px solid var(--border-light);
+    transition: all 0.2s ease;
+}
+
+.shortcut-item:hover {
+    background: var(--bg-primary);
+    border-color: var(--primary);
+    transform: translateX(4px);
+}
+
+.shortcut-item kbd {
+    background: var(--bg-darker);
+    color: var(--text-white);
+    padding: 0.5rem 0.75rem;
+    border-radius: var(--radius-sm);
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    font-weight: 600;
+    white-space: nowrap;
+    box-shadow: var(--shadow-sm);
+}
+
+.shortcut-item span {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+}
+
+/* ========================================
+   PRO NOTICE
+   ======================================== */
+
+.base47-pro-notice {
+    background: linear-gradient(135deg, rgba(255, 107, 53, 0.1) 0%, rgba(229, 90, 43, 0.1) 100%);
+    border: 1px solid rgba(255, 107, 53, 0.2);
+    border-radius: var(--radius-lg);
+    padding: 1.5rem;
+    display: flex;
+    gap: 1.5rem;
+    align-items: flex-start;
+    margin: 0 2rem 2rem 0;
+    position: relative;
+}
+
+.pro-notice-icon {
+    flex-shrink: 0;
+}
+
+.pro-notice-icon .dashicons {
+    font-size: 2rem;
+    width: 2rem;
+    height: 2rem;
+    color: var(--primary);
+}
+
+.pro-notice-content {
+    flex: 1;
+}
+
+.pro-notice-content h4 {
+    margin: 0 0 0.5rem 0;
+    color: var(--text-primary);
+    font-size: 1rem;
+}
+
+.pro-notice-content p {
+    margin: 0 0 1rem 0;
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+}
+
+.pro-notice-close {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0.25rem;
+    color: var(--text-secondary);
+    transition: all 0.2s ease;
+}
+
+.pro-notice-close:hover {
+    color: var(--text-primary);
+    transform: scale(1.1);
+}
+
+.pro-notice-close .dashicons {
+    font-size: 1.25rem;
+    width: 1.25rem;
+    height: 1.25rem;
+}
+
+/* ========================================
+   MONACO PRO OVERLAY
+   ======================================== */
+
+.base47-monaco-pro-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(3px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1;
+}
+
+.monaco-overlay-content {
+    text-align: center;
+    padding: 3rem;
+    max-width: 500px;
+}
+
+.monaco-overlay-content .dashicons {
+    font-size: 4rem;
+    width: 4rem;
+    height: 4rem;
+    color: var(--primary);
+    margin-bottom: 1.5rem;
+}
+
+.monaco-overlay-content h3 {
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin: 0 0 1rem 0;
+}
+
+.monaco-overlay-content p {
+    font-size: 1.125rem;
+    color: var(--text-secondary);
+    margin: 0 0 2rem 0;
+}
+
+.monaco-overlay-content .button-hero {
+    background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+    border: none;
+    color: var(--text-white);
+    font-weight: 600;
+    box-shadow: var(--shadow-md);
+    transition: all 0.2s ease;
+}
+
+.monaco-overlay-content .button-hero:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-lg);
+    color: var(--text-white);
+}
+
+/* ========================================
+   RESPONSIVE
+   ======================================== */
+
+@media (max-width: 1200px) {
+    .base47-editor-shell-soft {
+        flex-direction: column;
+        height: auto;
+    }
+    
+    .base47-editor-resizer {
+        display: none;
+    }
+    
+    .base47-editor-panel {
+        height: 500px;
+    }
+    
+    .base47-editor-preview {
+        height: 500px;
+    }
+}
+
+@media (max-width: 768px) {
+    .base47-editor-header-soft {
+        padding: 1.5rem;
+    }
+    
+    .base47-editor-header-soft h1 {
+        font-size: 1.5rem;
+    }
+    
+    .base47-editor-controls {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    
+    .controls-right {
+        width: 100%;
+    }
+    
+    .editor-btn {
+        flex: 1;
+        justify-content: center;
+    }
+    
+    .editor-selectors {
+        flex-direction: column;
+    }
+    
+    .selector-group {
+        width: 100%;
+    }
+    
+    .base47-editor-shell-soft {
+        height: auto;
+        min-height: 400px;
+    }
+    
+    .base47-editor-panel {
+        height: 400px;
+    }
+    
+    .base47-editor-preview {
+        height: 400px;
+    }
+    
+    .shortcuts-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* ============================================================
+   Safety Indicators Bar — Protected Save UX
+   ============================================================ */
+.base47-safety-bar {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 6px 16px;
+    background: #f8f9fa;
+    border-bottom: 1px solid #e9ecef;
+    flex-wrap: wrap;
+    min-height: 34px;
+}
+
+.base47-safety-indicator {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 12px;
+    color: #495057;
+    padding: 3px 8px;
+    border-radius: 4px;
+    background: #fff;
+    border: 1px solid #dee2e6;
+    box-shadow: 0 1px 2px rgba(0,0,0,.04);
+}
+
+.base47-indicator-persistent {
+    opacity: 1;
+}
+
+.base47-indicator-transient {
+    animation: base47FadeIn 0.3s ease;
+}
+
+@keyframes base47FadeIn {
+    from { opacity: 0; transform: translateY(-4px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+#base47-indicator-protected { border-color: #c3e6cb; background: #f0fff4; color: #155724; }
+#base47-indicator-restore   { border-color: #bee5eb; background: #f0f8ff; color: #0c5460; }
+#base47-indicator-backup    { border-color: #c3e6cb; background: #f0fff4; color: #155724; }
+#base47-indicator-warnings  { border-color: #ffeeba; background: #fffbf0; color: #856404; }
+
+/* ============================================================
+   Modal Styles — moved from inline <style> in editor.php
+   ============================================================ */
+.base47-he-modal {
+    display: none;
+    position: fixed;
+    z-index: 100000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.5);
+}
+.base47-he-modal-content {
+    background-color: #fff;
+    margin: 5% auto;
+    padding: 0;
+    border: 1px solid #ccc;
+    width: 80%;
+    max-width: 800px;
+    border-radius: 8px;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.2);
+}
+.base47-he-modal-header {
+    padding: 20px;
+    border-bottom: 1px solid #ddd;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.base47-he-modal-header h2 { margin: 0; font-size: 20px; }
+.base47-he-modal-close {
+    color: #666;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+    background: none;
+    border: none;
+    padding: 0;
+    line-height: 1;
+}
+.base47-he-modal-close:hover { color: #000; }
+.base47-he-modal-body { padding: 20px; max-height: 500px; overflow-y: auto; }
+.base47-he-modal-footer {
+    padding: 15px 20px;
+    border-top: 1px solid #ddd;
+    text-align: right;
+    display: flex;
+    gap: 10px;
+    justify-content: flex-end;
+}
+.base47-he-backup-list { display: flex; flex-direction: column; gap: 10px; }
+.base47-he-backup-item {
+    padding: 15px;
+    border: 2px solid #ddd;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.base47-he-backup-item:hover,
+.base47-he-backup-item.selected { border-color: #ff6b35; background: #fff5f2; }
+.base47-he-backup-date { font-weight: 600; color: #333; }
+.base47-he-backup-size { font-size: 12px; color: #666; }
+.base47-he-backup-badge {
+    background: #ff6b35;
+    color: #fff;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 11px;
+    font-weight: 600;
+}
+.base47-he-loading { text-align: center; color: #666; padding: 20px; }
+.base47-he-no-backups { text-align: center; color: #999; padding: 40px 20px; }
+.base47-he-backup-preview { margin-top: 20px; padding-top: 20px; border-top: 1px solid #ddd; }
+.base47-he-backup-preview h3 { margin: 0 0 10px 0; font-size: 16px; }

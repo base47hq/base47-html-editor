@@ -1,0 +1,14 @@
+# Bfolio Hero Video Widget Preview
+# 
+# This should be a PNG image (400x300px) showing:
+# - Left side: Bold typography "Creating bold visual narratives that inspire and engage."
+# - Right side: Video placeholder with play button
+# - Bottom: Animated category tags (Design, Branding, Development, etc.)
+# - Large "Bfolio@" text at the bottom
+# - Clean, modern portfolio hero section layout
+#
+# To create the actual preview.png:
+# 1. Take a screenshot of the widget in action
+# 2. Resize to 400x300 pixels
+# 3. Save as preview.png
+# 4. Replace this file with the actual PNG image

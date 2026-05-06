@@ -1,0 +1,12 @@
+{
+  "name": "Base47 Hero Slider",
+  "slug": "base47-hero-slider",
+  "description": "Full-screen parallax hero slider from Base47, isolated and safe.",
+  "html": "hero-slider.html",
+  "css": [
+    "css/hero-slider.css"
+  ],
+  "js": [
+    "js/hero-slider.js"
+  ]
+}
