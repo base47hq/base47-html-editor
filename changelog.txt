@@ -1,0 +1,736 @@
+========================================================
+BASE47 HTML EDITOR — CHANGELOG
+========================================================
+
+Version 3.0.1 – May 2026
+------------------------------------------
+CORE IMPROVEMENTS:
+• Improved loader architecture and template rendering stability
+• Enhanced backup and restore workflow
+• Added optional Strict Sanitization Mode for multi-user environments
+• Improved asset loading reliability and compatibility
+• Improved editor security and permission handling
+• Fixed AJAX handler conflicts and cleanup issues
+• Migrated backup filesystem operations to WP_Filesystem API
+• Renamed loader for clarity and consistency
+• Improved internal code documentation and rendering safeguards
+• Improved template rendering consistency
+• General stability and performance improvements
+
+Version 3.0.0 – February 6, 2026
+------------------------------------------
+MAJOR RELEASE:
+• First official public release
+• Full i18n translation support with .pot file
+• Security hardening (escaping, sanitization, nonce checks)
+• Improved update and compatibility architecture
+• Added privacy disclosures and licensing documentation
+• Added third-party library licensing documentation
+• Built-in classic HTML editor with live preview
+• Automatic shortcode generation for HTML templates
+• Base47 Loader system for optimized template asset loading
+• Theme-set management with activation and deactivation
+• Special Widgets system with auto-discovery
+• Backup and restore functionality
+• Soft UI admin dashboard
+• General stability, compatibility, and security improvements
+• Clean uninstall procedures
+• Comprehensive logging system
+• Mobile-responsive admin interface
+• Comprehensive external services disclosure
+
+Version 2.9.9.7.3 – January 19, 2026
+------------------------------------------
+MARKETPLACE UX IMPROVEMENTS:
+• Fixed notification position - now shows as center modal popup instead of corner
+• Fixed "More Templates Coming Soon" section layout with proper CSS
+• Updated installation guide to reflect direct installation workflow
+• Enhanced notification modal with better styling and animations
+• Added backdrop click and auto-close functionality for notifications
+
+NOTIFICATION SYSTEM:
+• Center modal popup with backdrop overlay
+• Success/Error/Info icons with color-coded styling
+• Auto-close after 5 seconds (except errors)
+• Click outside or OK button to close
+• Smooth fade animations and slide effects
+
+LAYOUT FIXES:
+• Added missing notification-banner CSS with gradient background
+• Fixed responsive design for mobile devices
+• Proper floating animations and visual effects
+• Corrected installation guide text for one-click install workflow
+
+Version 2.9.9.7.2 – January 19, 2026
+------------------------------------------
+MARKETPLACE INSTALLATION DEBUG:
+• Added comprehensive error reporting for installation failures
+• Enhanced AJAX error handling with detailed debug information
+• Added file permission and ZipArchive availability checks
+• Improved error messages with specific failure reasons
+• Debug info logged to browser console for troubleshooting
+• Better validation of ZIP files and installation requirements
+
+DEBUGGING FEATURES:
+• File existence and readability validation
+• ZipArchive extension availability check
+• Detailed error codes and messages
+• Installation path verification
+• File size and permission reporting
+
+Version 2.9.9.7.1 – January 19, 2026
+------------------------------------------
+MARKETPLACE DOWNLOAD FIX:
+• Fixed template download issue - users were getting 2KB files instead of actual ZIP files
+• Added dedicated download button for each template with proper file serving
+• Created new AJAX endpoint: base47_he_download_marketplace_template
+• Fixed JSON file path - now correctly reads from /metadata/templates.json
+• Added file size validation and proper download URLs
+• Enhanced download button with loading states and success notifications
+• Templates now download as proper ZIP files (SaaS: ~3MB, Slider: ~1.2MB)
+
+DOWNLOAD FUNCTIONALITY:
+• New download button with blue gradient styling
+• Real-time file size display in download notifications
+• Proper error handling for missing or corrupted ZIP files
+• Download progress feedback with loading animations
+• Automatic file naming for downloaded templates
+
+UI IMPROVEMENTS:
+• Three-button layout: Install | Download | Preview
+• Improved button spacing and visual hierarchy
+• Better download notifications with file size information
+• Enhanced error messages for troubleshooting
+
+TECHNICAL FIXES:
+• Fixed templates.json path from /base47-downloads/templates.json to /base47-downloads/metadata/templates.json
+• Added formatFileSize() utility function for human-readable file sizes
+• Enhanced AJAX error handling with detailed error messages
+• Improved file existence validation before serving downloads
+
+Version 2.9.9.7 – January 19, 2026
+------------------------------------------
+MARKETPLACE COMPLETE OVERHAUL:
+• Fixed template installation - now actually installs instead of just downloading
+• Added "More Templates Coming Soon" notification banner with purple gradient
+• Cleaned up template selection - now only shows Slider and SaaS templates
+• Fixed installation guide layout with professional styling and animations
+• Added proper AJAX installation with error handling and success messages
+• Templates now extract automatically to correct directory structure
+
+TEMPLATE MANAGEMENT:
+• Updated templates.json to only include active templates (Slider + SaaS)
+• Fixed template installation process with proper ZIP extraction
+• Added base47_he_install_theme_from_zip() function for marketplace integration
+• Improved error messages for installation failures
+• Auto-refresh theme cache after successful installation
+
+UI/UX IMPROVEMENTS:
+• Beautiful notification banner with floating animations and "New" badge
+• Professional installation guide with numbered steps and hover effects
+• Responsive design for all marketplace components
+• Clean template grid showing only selected templates
+• Mobile-friendly layout for all screen sizes
+
+TECHNICAL ENHANCEMENTS:
+• New AJAX handler: base47_he_install_marketplace_template
+• Enhanced marketplace.js with proper installation workflow
+• Improved CSS architecture with Soft UI design system
+• Better error handling and user feedback throughout installation process
+
+Version 2.9.9.6.3 – January 18, 2026
+------------------------------------------
+BUG FIXES - MAJOR UX IMPROVEMENTS:
+• Fixed error messages disappearing too fast - now stay for 10 seconds
+• Fixed white box appearing in Theme Manager header after actions
+• Fixed Live Editor Save button showing WordPress dashboard in preview
+• Fixed fallback mode error message with broken UI - now uses Soft UI design
+• Fixed fallback mode redirect - now goes to Dashboard instead of Settings
+• Added delete ticket functionality in Support page with confirmation
+• Fixed Pro License page design - now matches Soft UI styling
+• Improved ZIP upload error messages with detailed explanations
+
+MARKETPLACE ENHANCEMENTS:
+• Added installation guide at bottom of marketplace page
+• Step-by-step instructions for template installation
+• Beautiful purple gradient design with responsive layout
+• Clear notes about ZIP structure requirements
+
+THEME MANAGER IMPROVEMENTS:
+• WordPress notices now hidden - using Soft UI notifications instead
+• Notifications stay visible for 10 seconds (was 5-6 seconds)
+• Better error message conversion and timing
+• Professional notification system with proper styling
+
+LIVE EDITOR FIX:
+• Save button now correctly refreshes preview with HTML content
+• No more WordPress dashboard appearing in preview iframe
+• Consistent behavior with auto-refresh functionality
+• Uses base47_he_live_preview AJAX call instead of iframe reload
+
+FALLBACK MODE REDESIGN:
+• Modern Soft UI styled error message
+• Red gradient background with wave pattern
+• Clear information display with backdrop blur effects
+• Professional action buttons with hover effects
+• Better visual hierarchy and readability
+• Redirect to Dashboard page instead of Settings after deactivation
+
+SUPPORT SYSTEM ENHANCEMENTS:
+• Added delete ticket button with confirmation dialog
+• Tickets fade out smoothly when deleted
+• Proper AJAX endpoint with security checks
+• Automatic ticket count update after deletion
+• Reload page if no tickets remain
+
+PRO LICENSE PAGE REDESIGN:
+• Complete Soft UI v3.0 design matching main license page
+• Modern gradient hero cards with animations
+• Professional license details grid layout
+• Enhanced activation form with better UX
+• Testimonials and features showcase sections
+• Responsive design for all screen sizes
+
+TECHNICAL DETAILS:
+• Updated plugin version to 2.9.9.6.3
+• Modified: theme-manager.css, theme-manager.js, theme-install.php
+• Modified: marketplace.php, marketplace.css, admin.js
+• Modified: fallback-mode.php with complete UI redesign
+• Modified: support.js, support.php (added delete functionality)
+• Modified: base47-html-editor-PRO/inc/admin-pages/license.php
+• Modified: base47-html-editor-PRO/assets/pro-admin.css
+• All changes maintain backward compatibility
+
+Version 2.9.9.6.1 – January 15, 2026
+------------------------------------------
+MARKETPLACE FIX:
+• Fixed marketplace CSS not loading (added enqueue in admin-init.php lines 344-365)
+• Confirmed marketplace.css with complete Soft UI orange gradient design
+• Confirmed marketplace.js with AJAX filtering and preview functionality
+• Confirmed marketplace.php AJAX handler with 12 sample templates
+• Marketplace now properly displays: orange gradient banner, 4 stat cards, filter section, and template grid
+
+TECHNICAL DETAILS:
+• Updated plugin version to 2.9.9.6.1
+• Added wp_enqueue_style for marketplace.css
+• Added wp_enqueue_script for marketplace.js
+• Added wp_localize_script for AJAX nonce and URL
+• All marketplace files confirmed present and functional
+
+Version 2.9.9.3.9 – January 12, 2026
+------------------------------------------
+CRITICAL BUG FIXES:
+• Fixed changelog page showing empty rows - corrected version parsing regex
+• Added missing marketplace.css file with complete Soft UI styling
+• Added CSS styling for dashboard support system section
+• Enhanced support ticket system with professional cards and actions
+• Fixed CSS enqueuing for marketplace page
+
+UI IMPROVEMENTS:
+• Professional support system cards with priority badges
+• Enhanced marketplace grid layout with modern template cards
+• Improved dashboard support section with statistics display
+• Better responsive design for all admin pages
+• Consistent Soft UI v3.0 design across all components
+
+TECHNICAL IMPROVEMENTS:
+• Updated plugin version to 2.9.9.3.9
+• Enhanced CSS organization and loading
+• Better error handling and user feedback
+• Improved admin page styling consistency
+
+Version 2.9.9.3.6 – January 12, 2026
+------------------------------------------
+DASHBOARD IMPROVEMENTS:
+• Updated all external links to base47.art
+• Enhanced Pro upgrade CTA with modern design
+• Fixed CSS variables for proper color variety
+• Improved responsive design and mobile experience
+• Added professional animations and hover effects
+
+DESIGN SYSTEM:
+• Corrected color variables for success, info, warning states
+• Enhanced visual hierarchy throughout dashboard
+• Professional gradient backgrounds and effects
+• Consistent Soft UI v3.0 design implementation
+
+Version 2.9.9.3.5 – January 12, 2026
+------------------------------------------
+PRO UPGRADE PAGE REDESIGN:
+• Complete redesign with conversion-optimized layout
+• Modern hero section with animated illustrations
+• Professional pricing cards with yearly/monthly toggle
+• Enhanced feature showcase with highlight badges
+• Customer testimonials for social proof
+• Interactive FAQ accordion with smooth animations
+• Trust badges and guarantee messaging
+• Fully responsive design for all devices
+
+TECHNICAL IMPROVEMENTS:
+• Complete CSS rewrite with Soft UI v3.0 design
+• Enhanced JavaScript for pricing toggle and FAQ
+• Professional animations and micro-interactions
+• Optimized for mobile and tablet devices
+
+Version 2.9.9.3.4 – January 12, 2026
+------------------------------------------
+LICENSE PAGE REDESIGN:
+• Complete redesign with modern license management
+• Hero status cards with animated indicators
+• Professional license details with organized layout
+• Enhanced activation form with better UX
+• Customer testimonials for social proof
+• Integrated support section with direct links
+• Fully responsive design for all devices
+
+UI ENHANCEMENTS:
+• Pulse animations for active licenses
+• Professional gradients and shadow system
+• Enhanced typography and spacing
+• Better mobile experience
+
+Version 2.9.9.3.3 – January 12, 2026
+------------------------------------------
+CHANGELOG PAGE REDESIGN:
+• Complete redesign with professional timeline layout
+• Advanced filtering by version type (All, Major, New Features, Hotfixes)
+• Statistics dashboard with version counts
+• Categorized changes (Features, Improvements, Bug Fixes, Technical)
+• Interactive accordion with smooth animations
+• Modern Soft UI v3.0 design system
+• Fully responsive design
+
+TECHNICAL IMPROVEMENTS:
+• Enhanced JavaScript for filtering and interactions
+• Professional CSS with gradients and animations
+• Better data organization and presentation
+• Improved mobile experience
+
+Version 2.9.9.3.2 – January 12, 2026
+------------------------------------------
+MARKETPLACE INTEGRATION:
+• Connected marketplace to real API at base47.art
+• Replaced mock data with live template downloads
+• Added proper error handling for API failures
+• Improved security with request validation
+• Enhanced download system with ZIP extraction
+
+TECHNICAL IMPROVEMENTS:
+• Updated plugin version to 2.9.9.3.2
+• Improved API endpoint structure
+• Better WordPress HTTP API integration
+• Enhanced template installation process
+
+Version 2.9.9.3.1 – January 11, 2026
+------------------------------------------
+MARKETPLACE SYSTEM LAUNCH:
+• Added complete Template Marketplace interface
+• Browse and install templates from base47.art
+• Advanced filtering by category, type, and rating
+• One-click template installation
+• Live preview system with device switching
+• Template rating and review system
+• Professional UI with Soft UI design
+
+NEW FEATURES:
+• Marketplace admin page with grid layout
+• Template search and filtering
+• Preview modal with responsive views
+• Installation progress tracking
+• Automatic theme activation after install
+• Error handling and user feedback
+
+Version 2.9.9.3.0 – January 10, 2026
+------------------------------------------
+TEMPLATE DUPLICATION FEATURE:
+• Added "Duplicate" button to Live Editor
+• Modal interface for naming duplicates
+• Complete template duplication with assets
+• Automatic shortcode generation
+• Preserves unsaved edits during duplication
+• Filename validation and conflict prevention
+
+UI IMPROVEMENTS:
+• Enhanced Live Editor toolbar
+• Better user feedback and error handling
+• Improved template management workflow
+
+Version 2.9.9.2.15 – December 15, 2025
+------------------------------------------
+PREVIEW SYSTEM FIX:
+• Fixed preview after save showing WordPress page instead of pure HTML
+• Updated save function to use live preview AJAX method
+• Improved template preview accuracy
+• Better user experience in Live Editor
+
+BUG FIXES:
+• Resolved preview display issues
+• Fixed template rendering problems
+• Improved editor reliability
+
+Version 2.9.9.2.8 – December 10, 2025
+------------------------------------------
+CORE IMPROVEMENTS:
+• Enhanced template loading system
+• Improved shortcode generation
+• Better error handling and logging
+• Performance optimizations
+
+STABILITY:
+• Fixed various minor bugs
+• Improved plugin reliability
+• Better WordPress compatibility
+
+Version 2.9.8 – November 2025
+------------------------------------------
+DASHBOARD REDESIGN:
+• Professional Soft UI dashboard design
+• Welcome banner with call-to-action buttons
+• Statistics overview with visual cards
+• Quick actions grid for easy navigation
+• System information display
+• Ecosystem products showcase
+• Help and support links section
+
+UI ENHANCEMENTS:
+• Modern gradient backgrounds
+• Professional animations and hover effects
+• Responsive design for all devices
+• Enhanced visual hierarchy
+
+Version 2.9.7 – October 2025
+------------------------------------------
+LIVE EDITOR IMPROVEMENTS:
+• Enhanced Monaco Editor integration
+• Better syntax highlighting
+• Improved code completion
+• Real-time preview updates
+
+TEMPLATE SYSTEM:
+• Better template detection
+• Improved shortcode generation
+• Enhanced theme management
+• Performance optimizations
+
+Version 2.9.6 – September 2025
+------------------------------------------
+THEME MANAGER REDESIGN:
+• Professional Soft UI design
+• Toggle switches for theme activation
+• Better visual feedback
+• Improved user experience
+
+CORE FEATURES:
+• Enhanced template loading
+• Better error handling
+• Improved performance
+• WordPress 6.3 compatibility
+
+Version 2.9.5 – August 2025
+------------------------------------------
+SHORTCODES PAGE REDESIGN:
+• Modern grid layout
+• Search functionality
+• Copy-to-clipboard buttons
+• Better organization
+
+IMPROVEMENTS:
+• Enhanced user interface
+• Better mobile experience
+• Improved accessibility
+• Performance optimizations
+
+Version 2.9.0 – July 2025
+------------------------------------------
+MAJOR RELEASE:
+• Complete plugin rebranding to Base47 branding
+• Updated all function names and prefixes
+• New professional branding
+• Enhanced documentation
+
+CORE FEATURES:
+• Live HTML editor with Monaco
+• Template management system
+• Shortcode generation
+• Theme toggle functionality
+• Special widgets support
+
+TECHNICAL:
+• WordPress 6.2+ compatibility
+• PHP 7.4+ requirement
+• Enhanced security
+• Performance improvements
+• Better modal design and interactions
+• Improved user feedback with notifications
+• Professional button styling
+
+Version 2.9.7.7 – December 6, 2024
+------------------------------------------
+CRITICAL HOTFIX:
+• Fixed Live Editor resizer snapping out of place
+• Fixed editor and preview boxes being too small
+• Fixed preview loading entire WordPress inside iframe
+• Fixed mode switcher buttons not working
+• Fixed Theme Manager page broken HTML structure
+• Fixed Changelog page not showing content
+
+SOFT UI INTEGRATION:
+• Added blue gradient header to Live Editor
+• Styled control topbar with selector groups
+• Professional button styling for Save/Restore/Preview
+• Responsive mobile layout improvements
+• Preserved all functionality while adding visual styling
+
+Version 2.9.7.1 – December 5, 2024
+------------------------------------------
+SOFT UI MINI-PAGES:
+• Changelog Page: Purple gradient header with interactive accordion
+• Logs Page: Blue gradient header with responsive table
+• Settings Page: Green gradient header with toggle switches
+• Widgets Page: Orange gradient header with card grid
+
+DESIGN IMPROVEMENTS:
+• Consistent Soft UI design across all admin pages
+• Wave pattern overlays on headers
+• Stats cards with gradient icons
+• Smooth animations and transitions
+• Fully responsive layouts for mobile devices
+
+Version 2.9.7 – December 4, 2024
+------------------------------------------
+SHORTCODES PAGE REDESIGN:
+• Complete Soft UI redesign of Shortcodes page
+• Blue gradient header with wave pattern
+• Modern template cards with theme badges
+• Live search filtering by template name
+• Toast notifications on shortcode copy
+• Preview panel with empty state handling
+
+Version 2.6.0 – December 2024
+------------------------------------------
+COMPLETE REBRANDING:
+• Complete Base47 HTML Editor branding
+• Updated all functions to base47_* prefix
+• Changed shortcodes to [base47-*] format
+• Maintained backward compatibility for legacy shortcodes
+• Automatic data migration from old to new options
+• Updated admin interface with Base47 branding
+
+Version 2.5.2 – November 18, 2024
+------------------------------------------
+SPECIAL WIDGETS SYSTEM:
+• Added automatic Special Widgets discovery
+• New universal shortcode: [base47_widget slug="..."]
+• Auto-generated admin list with previews
+• Modular widget architecture
+• Clean CSS/JS loading without conflicts
+
+Version 2.5.1 – November 17, 2024
+------------------------------------------
+MANIFEST SYSTEM ENHANCEMENTS:
+• Added Manifest vs Loader toggle per template set
+• Special Widgets system for reusable components
+• Slider V1 widget with shortcode support
+• Performance improvements for heavy themes
+• Fixed JavaScript errors in slider components
+
+BUG FIXES:
+• Fixed slider JavaScript TypeError issues
+• Fixed performance problems with heavy themes
+• Removed jQuery dependency from slider
+• Added conflict detection for libraries
+• Enhanced safety checks in JavaScript
+
+Version 2.5.0 – November 17, 2024
+------------------------------------------
+MANIFEST SYSTEM LAUNCH:
+• Introduced manifest.json system for asset management
+• Per-template-set asset configuration
+• Smart asset loading - only when templates used
+• Custom handle prefixes per template set
+• Flexible asset structure for complex libraries
+
+PERFORMANCE IMPROVEMENTS:
+• Massive performance boost - eliminated unnecessary loading
+• Better memory usage for multi-template sites
+• Cleaner asset organization
+• Enhanced code structure and maintainability
+
+Version 2.4.0 – November 2024
+------------------------------------------
+LIVE EDITOR PRO UPGRADE:
+• Major Live Editor layout overhaul
+• Full-width responsive workspace
+• Always-visible Keyboard Shortcuts Panel
+• New "Open Preview" button functionality
+• Improved preview iframe sizing
+• Enhanced drag resizer behavior
+• Professional toolbar design improvements
+
+Version 2.3.0 – November 2024
+------------------------------------------
+SPECIAL WIDGETS SYSTEM:
+• Introduced Special Widgets system
+• New admin submenu for widgets
+• Automatic shortcode generator
+• Integrated Slider V1 (Redox Hero Slider)
+• Isolated asset loader for widgets
+• Preview functionality for widgets
+
+Version 2.2.3 – November 2024
+------------------------------------------
+LIVE PREVIEW ENGINE:
+• Added real-time LIVE Preview with AJAX
+• Cache-bypass using random parameters
+• Enhanced live preview rendering
+• Improved asset URL rewriting in preview
+• Fixed browser caching issues
+
+Version 2.2.0 – November 2024
+------------------------------------------
+MULTI-SET SHORTCODE SYSTEM:
+• Automatic shortcode registration per template
+• Improved naming convention for shortcodes
+• Auto-updating shortcodes when templates renamed
+• Nested shortcode support with do_shortcode
+• Removed duplicate shortcode registration
+
+Version 2.1.5 – November 2024
+------------------------------------------
+THEME MANAGER LAUNCH:
+• Added Theme Manager with toggle system
+• Activate/deactivate template sets
+• Only active sets visible in editor and shortcodes
+• Improved default theme auto-detection
+• Safety fallback for missing active sets
+
+Version 2.1.4 – November 2024
+------------------------------------------
+TEMPLATE DISCOVERY:
+• Auto-detection of folders ending in "-templates"
+• Improved sorting of template sets
+• Auto-register empty folders for compatibility
+• Enhanced directory scanning with cleanup
+
+Version 2.1.3 – November 2024
+------------------------------------------
+ASSET REWRITE ENGINE:
+• Automatic rewriting of asset paths
+• Support for src, href, and data-background attributes
+• Optional cache-busting with version parameters
+• Fixed relative paths in nested templates
+• Prevented broken images after template imports
+
+Version 2.1.2 – November 2024
+------------------------------------------
+ADMIN UI ENHANCEMENTS:
+• Re-styled Shortcodes grid with thumbnails
+• Added "Copy shortcode" functionality
+• Improved layout spacing and alignment
+• Added iframe preview for each template
+• Modern dashboard statistics boxes
+
+Version 2.1.1 – November 2024
+------------------------------------------
+STABILITY IMPROVEMENTS:
+• Fixed Live Editor "Save" button not working
+• Fixed admin layout breaking on some installations
+• Fixed preview iframe not refreshing after updates
+• Added stable default theme resolver
+• Improved safety checks for missing template sets
+
+Version 2.1.0 – November 2024
+------------------------------------------
+THEME MANAGER FOUNDATION:
+• Added Theme Manager with toggle switches
+• New option for enabled/disabled template sets
+• Shortcodes registered only for enabled themes
+• Front-end rendering respects toggle settings
+• Activation hook initializes default state
+
+IMPROVEMENTS:
+• Enhanced asset rewrite system
+• Improved directory scanning for template sets
+• Added backward compatibility helpers
+• Codebase cleanup and reorganization
+
+Version 2.0.8 – November 2024
+------------------------------------------
+LIVE PREVIEW FIXES:
+• Fixed Live Preview refresh without breaking layout
+• Correct asset rewriting for all theme sets
+• Smoother and more precise resizer in Live Editor
+• Improved editor performance while typing
+• Cross-theme shortcode system compatibility
+
+TECHNICAL:
+• Support for unlimited theme folders
+• Automatic detection of template sets
+• Refactored AJAX handling
+• WordPress 6.7+ and PHP 8.2 compatibility
+
+Version 2.0.7 – November 2024
+------------------------------------------
+MULTI-TEMPLATE SUPPORT:
+• Added support for multiple template sets
+• Backward compatibility for existing shortcodes
+• New shortcode naming for additional sets
+• Live Editor template set selection
+• Admin dashboard shows counts per set
+• Improved asset rewriting per set
+
+Version 2.0.6 – November 2024
+------------------------------------------
+MULTI-THEME FOUNDATION:
+• Added multi-theme support infrastructure
+• Fixed shortcode output rendering issues
+• Fixed live editor preview updating
+• Improved automatic asset path rewriting
+• Enhanced performance and safety
+• Custom shortcode prefixes per theme
+
+Version 2.0.5 – November 2024
+------------------------------------------
+PREVIEW ENHANCEMENTS:
+• Added support for second HTML shell
+• Optimized admin CSS and JavaScript
+• Fixed editor iframe resize logic
+• General stability improvements
+
+Version 2.0.4 – November 2024
+------------------------------------------
+STRUCTURE REBUILD:
+• Rebuilt plugin structure for stable editing
+• Restored shortcode box styling
+• Added changelog and settings subpages
+• Improved overall plugin architecture
+
+Version 2.0.3 – November 2024
+------------------------------------------
+LIVE EDITOR LAUNCH:
+• Introduced full live HTML editor
+• Added preview and restore functionality
+• Added admin CSS/JS assets
+• Shortcode grid view with iframe previews
+
+Version 2.0.2 – November 2024
+------------------------------------------
+TEMPLATE INTEGRATION:
+• Initial integration of HTML template bundle
+• Automatic shortcode registration per template
+• Basic template rendering system
+
+Version 2.0.1 – November 2024
+------------------------------------------
+FOUNDATION IMPROVEMENTS:
+• Minor bug fixes and UI improvements
+• Enhanced layout consistency
+• Improved admin interface stability
+
+Version 2.0.0 – November 2024
+------------------------------------------
+INITIAL RELEASE:
+• Initial public release of Base47 HTML Editor
+• Core shortcode generator functionality
+• Basic dashboard and admin interface
+• Template rendering system foundation
