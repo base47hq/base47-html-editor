@@ -93,6 +93,23 @@ function base47_he_changelog_page() {
 function base47_he_get_changelog_versions() {
     return [
         [
+            'version' => '3.0.2',
+            'date' => 'May 2026',
+            'title' => 'Stability & Compatibility Update',
+            'summary' => 'Improved editor stability, AJAX handling, and internal architecture.',
+            'changes' => [
+                'Improved editor stability and internal architecture',
+                'Improved AJAX handling and admin reliability',
+                'Added Validation Warnings panel in the editor with detailed issue display',
+                'Added keyboard shortcuts bar with visual reference',
+                'Added template duplication in the editor toolbar',
+                'General compatibility improvements',
+                'Internal code cleanup and maintenance',
+                'Fixed minor UI and workflow inconsistencies',
+                'Improved plugin structure and maintainability',
+            ]
+        ],
+        [
             'version' => '3.0.1',
             'date' => 'May 2026',
             'title' => 'Core Stability Update',

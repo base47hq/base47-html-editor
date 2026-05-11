@@ -58,9 +58,6 @@ function base47_he_settings_page() {
             'sanitize_output'             => isset( $_POST['sanitize_output'] ),
         ];
         
-        // Track if user explicitly set strict sanitization mode
-        update_option( 'base47_he_strict_mode_user_set', true );
-        
         if ( base47_he_update_settings( $new_settings ) ) {
             // Log settings save
             $user = wp_get_current_user();

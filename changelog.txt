@@ -2,6 +2,19 @@
 BASE47 HTML EDITOR — CHANGELOG
 ========================================================
 
+Version 3.0.2 – May 2026
+------------------------------------------
+STABILITY & COMPATIBILITY UPDATE:
+• Improved editor stability and internal architecture
+• Improved AJAX handling and admin reliability
+• Added Validation Warnings panel in the editor with detailed issue display
+• Added keyboard shortcuts bar with visual reference
+• Added template duplication in the editor toolbar
+• General compatibility improvements
+• Internal code cleanup and maintenance
+• Fixed minor UI and workflow inconsistencies
+• Improved plugin structure and maintainability
+
 Version 3.0.1 – May 2026
 ------------------------------------------
 CORE IMPROVEMENTS:
@@ -343,7 +356,7 @@ NEW FEATURES:
 Version 2.9.9.3.0 – January 10, 2026
 ------------------------------------------
 TEMPLATE DUPLICATION FEATURE:
-• Added "Duplicate" button to Live Editor
+• Added Template Duplication in the Live Editor
 • Modal interface for naming duplicates
 • Complete template duplication with assets
 • Automatic shortcode generation

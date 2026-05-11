@@ -327,8 +327,8 @@ function base47_he_get_all_tooltips() {
         // ========================================
         
         'upgrade_features' => [
-            'title' => 'Pro Features',
-            'content' => 'Premium features available in Arq Editor Pro version.',
+            'title' => 'Pro Add-on Features',
+            'content' => 'Additional features provided by the Base47 HTML Editor Pro add-on.',
         ],
         
         'upgrade_pricing' => [
@@ -340,9 +340,9 @@ function base47_he_get_all_tooltips() {
         // GENERAL TOOLTIPS
         // ========================================
         
-        'pro_feature' => [
-            'title' => 'Pro Feature',
-            'content' => 'This feature is available in Arq Editor Pro. Upgrade to unlock premium features.',
+        'pro_addon' => [
+            'title' => 'Pro Add-on',
+            'content' => 'This feature is provided by the Base47 HTML Editor Pro add-on plugin.',
         ],
         
         'coming_soon' => [

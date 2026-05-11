@@ -31,13 +31,15 @@ function base47_he_is_pro_installed() {
 }
 
 /**
- * Check if Pro plugin is active (Free version always returns false)
+ * Check if Pro plugin is active.
+ * 
+ * Uses filter system for WordPress.org compliance.
+ * Pro plugin hooks into this filter to return true when installed and licensed.
  * 
  * @return bool
  */
 function base47_he_is_pro_active() {
-    // Free version - always return false
-    return false;
+    return apply_filters( 'base47_he_is_pro_active', false );
 }
 
 /**

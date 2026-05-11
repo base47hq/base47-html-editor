@@ -165,42 +165,7 @@ function base47_he_get_site_uuid() {
     return $uuid;
 }
 
-/**
- * Install Pro plugin automatically
- */
-/**
- * Install Pro plugin automatically
- *
- * REMOVED: Auto-install of Pro plugin is not permitted per WordPress.org guidelines.
- * Users must install the Pro plugin manually.
- * This stub is kept for backward compatibility only.
- */
-function base47_he_install_pro_plugin() {
-    return [ 'success' => false, 'message' => 'Auto-install not available. Please install the Pro plugin manually.' ];
-}
 
-/**
- * AJAX: Install Pro Plugin — REMOVED
- *
- * This action has been removed for WordPress.org compliance.
- * The free plugin must not install or activate other plugins automatically.
- * Users must install the Pro plugin manually from their account downloads.
- */
-add_action( 'wp_ajax_base47_install_pro_plugin', 'base47_he_ajax_install_pro_plugin' );
-function base47_he_ajax_install_pro_plugin() {
-    // Verify nonce
-    check_ajax_referer( 'base47_he', 'nonce' );
-    
-    // Check permissions
-    if ( ! current_user_can( 'manage_options' ) ) {
-        wp_send_json_error( [ 'message' => 'Permission denied' ] );
-    }
-    
-    wp_send_json_error( [
-        'message' => 'Automatic PRO installation is not available yet. Please download the PRO ZIP from your Base47 account and upload it via Plugins → Add New → Upload Plugin.',
-        'download_url' => 'https://base47.art/account/downloads/'
-    ] );
-}
 
 /**
  * AJAX: Deactivate License

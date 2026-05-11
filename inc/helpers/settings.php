@@ -216,27 +216,6 @@ function base47_he_get_cache_lifetime() {
 }
 
 /**
- * Check if Pro plugin is active.
- * 
- * Uses filter system for WordPress.org compliance.
- * Pro plugin hooks into this filter to return true.
- * 
- * @return bool
- */
-function base47_he_is_pro_active() {
-    return apply_filters( 'base47_he_is_pro_active', false );
-}
-
-/**
- * Get Pro upgrade URL.
- * 
- * @return string
- */
-function base47_he_get_pro_url() {
-    return apply_filters( 'base47_he_pro_url', 'https://base47.art/base47-html-editor/' );
-}
-
-/**
  * Show Pro required page for features that need Pro.
  * 
  * @param string $feature_name

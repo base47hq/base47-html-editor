@@ -6,6 +6,12 @@
  */
 jQuery( document ).ready( function( $ ) {
 
+	// Global showMessage function
+	function showMessage( type, text ) {
+		var $message = $( '#license-message' );
+		$message.removeClass( 'success error info' ).addClass( type ).html( text ).show();
+	}
+
 	// Activate License
 	$( '#base47-license-form' ).on( 'submit', function( e ) {
 		e.preventDefault();
@@ -47,10 +53,6 @@ jQuery( document ).ready( function( $ ) {
 			$btn.prop( 'disabled', false ).removeClass( 'loading' );
 			$btnText.text( 'Activate License' );
 			$btnIcon.removeClass( 'dashicons-update' ).addClass( 'dashicons-yes' );
-		}
-
-		function showMessage( type, text ) {
-			$message.removeClass( 'success error info' ).addClass( type ).html( text ).show();
 		}
 	} );
 

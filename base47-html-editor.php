@@ -2,7 +2,7 @@
 /*
 Plugin Name: Base47 HTML Editor
 Description: A professional HTML editor for WordPress. Write pure, clean HTML with live preview, canvas mode, and smart asset loading. Perfect for developers who want full control.
-Version: 3.0.1
+Version: 3.0.2
 Author: Base47
 Author URI: https://base47.art
 Plugin URI: https://base47.art/base47-html-editor
@@ -20,7 +20,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 /* --------------------------------------------------------------------------
 | CONSTANTS
 -------------------------------------------------------------------------- */
-define( 'BASE47_HE_VERSION', '3.0.1' );
+define( 'BASE47_HE_VERSION', '3.0.2' );
 define( 'BASE47_HE_PATH', plugin_dir_path( __FILE__ ) );
 define( 'BASE47_HE_URL',  plugin_dir_url( __FILE__ ) );
 
@@ -91,6 +91,7 @@ require_once BASE47_HE_PATH . 'inc/shortcodes.php';
 require_once BASE47_HE_PATH . 'inc/activation.php';
 
 // Helpers
+require_once BASE47_HE_PATH . 'inc/helpers/feature-detection.php';
 require_once BASE47_HE_PATH . 'inc/helpers/settings.php';
 require_once BASE47_HE_PATH . 'inc/helpers/logs.php';
 require_once BASE47_HE_PATH . 'inc/helpers/security.php'; // Central security helpers (must load before AJAX)
@@ -201,7 +202,10 @@ add_action( 'admin_init', 'base47_he_onboarding_redirect' );
 
 /**
  * Canvas Mode Frontend Renderer
- * Only activates for pages with explicit Base47 canvas/template meta enabled
+ * Only activates for pages with explicit Base47 canvas/template meta enabled.
+ * 
+ * This takes full control of the page output — provides its own document shell.
+ * Works regardless of which theme template is assigned.
  */
 function base47_canvas_mode_takeover( $template ) {
     if ( ! is_singular() ) {

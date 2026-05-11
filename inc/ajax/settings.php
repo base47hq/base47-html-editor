@@ -61,30 +61,11 @@ function base47_he_ajax_clear_logs() {
 add_action( 'wp_ajax_base47_clear_logs', 'base47_he_ajax_clear_logs' );
 
 /**
- * AJAX: Download logs - PRO ONLY (stub)
- * Only registered when Pro is NOT active. When Pro is active, the real handler in
- * class-advanced-logs.php takes over.
+ * AJAX: Download logs
+ *
+ * Pro plugin provides an advanced log download handler.
+ * Free version does not register this endpoint — no stub needed.
  */
-function base47_he_ajax_download_logs() {
-    check_ajax_referer( 'base47_he', 'nonce' );
-    
-    if ( ! current_user_can( 'manage_options' ) ) {
-        wp_die( 'Insufficient permissions.' );
-    }
-    
-    wp_send_json_error( [
-        'message' => 'Log download is available in Base47 HTML Editor Pro.',
-        'upgrade_url' => 'https://base47.art/base47-html-editor/',
-        'pro_feature' => true,
-    ] );
-}
-// Only register stub when Pro is not active — Pro registers its own real handler.
-// Deferred to 'init' because Pro registers its filter at plugins_loaded priority 20.
-add_action( 'init', function() {
-    if ( ! apply_filters( 'base47_he_is_pro_active', false ) ) {
-        add_action( 'wp_ajax_base47_download_logs', 'base47_he_ajax_download_logs' );
-    }
-}, 5 );
 
 /**
  * AJAX: Reset settings to defaults
@@ -110,48 +91,7 @@ function base47_he_ajax_reset_settings() {
 add_action( 'wp_ajax_base47_reset_settings', 'base47_he_ajax_reset_settings' );
 
 /**
- * AJAX: Export settings - PRO ONLY (stub)
- * Only registered when Pro is NOT active. When Pro is active, the real handler in
- * class-settings-manager.php takes over.
+ * Settings export/import are provided by the Pro add-on.
+ * Free version does not register stub endpoints — no trialware pattern.
+ * Pro plugin registers its own wp_ajax handlers when active.
  */
-function base47_he_ajax_export_settings() {
-    check_ajax_referer( 'base47_he', 'nonce' );
-    
-    if ( ! current_user_can( 'manage_options' ) ) {
-        wp_die( 'Insufficient permissions.' );
-    }
-    
-    wp_send_json_error( [
-        'message' => 'Settings export is available in Base47 HTML Editor Pro.',
-        'upgrade_url' => 'https://base47.art/base47-html-editor/',
-        'pro_feature' => true,
-    ] );
-}
-
-/**
- * AJAX: Import settings - PRO ONLY (stub)
- * Only registered when Pro is NOT active. When Pro is active, the real handler in
- * class-settings-manager.php takes over.
- */
-function base47_he_ajax_import_settings() {
-    check_ajax_referer( 'base47_he', 'nonce' );
-    
-    if ( ! current_user_can( 'manage_options' ) ) {
-        wp_send_json_error( [ 'message' => 'Insufficient permissions.' ] );
-    }
-    
-    wp_send_json_error( [
-        'message' => 'Settings import is available in Base47 HTML Editor Pro.',
-        'upgrade_url' => 'https://base47.art/base47-html-editor/',
-        'pro_feature' => true,
-    ] );
-}
-
-// Only register export/import stubs when Pro is not active — Pro registers its own real handlers.
-// Deferred to 'init' because Pro registers its filter at plugins_loaded priority 20.
-add_action( 'init', function() {
-    if ( ! apply_filters( 'base47_he_is_pro_active', false ) ) {
-        add_action( 'wp_ajax_base47_export_settings', 'base47_he_ajax_export_settings' );
-        add_action( 'wp_ajax_base47_import_settings', 'base47_he_ajax_import_settings' );
-    }
-}, 5 );

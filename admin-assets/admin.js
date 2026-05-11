@@ -187,7 +187,8 @@ function getActiveSet() {
                 }
             } else {
                 // Show error
-                $error.find('p').text(resp.data || 'Failed to duplicate template.');
+                var errorMsg = (resp.data && resp.data.message) ? resp.data.message : 'Failed to duplicate template.';
+                $error.find('p').text(errorMsg);
                 $error.show();
                 
                 // Re-enable button
@@ -222,9 +223,9 @@ function getActiveSet() {
         $('#base47-he-refresh-backups').click();
     });
 
-    // Close modal
+    // Close modal — works for ALL modals (duplicate, restore, etc.)
     $(document).on('click', '.base47-he-modal-close', function() {
-        $('#base47-he-restore-modal').fadeOut(200);
+        $(this).closest('.base47-he-modal').fadeOut(200);
     });
 
     // Select backup
@@ -631,7 +632,8 @@ function getActiveSet() {
         }
         
         if (!BASE47_HE.monaco_path) {
-            showSoftUIToast('Monaco Editor not available. PRO plugin required.', '🔒');
+            console.warn('Monaco path not configured.');
+            showSoftUIToast('Monaco Editor is not available. The classic editor has been loaded instead.', '⚠️');
             return;
         }
         
@@ -684,9 +686,9 @@ function getActiveSet() {
             });
     }
     
-    // Initialize Monaco Editor if on editor page AND Pro is active
-    if ($('#base47-monaco-editor').length > 0 && hasPro) {
-        // Pro is active - set initial button states FIRST
+    // Initialize Monaco Editor if on editor page AND Pro is active AND monaco_path is set
+    if ($('#base47-monaco-editor').length > 0 && hasPro && BASE47_HE.monaco_path) {
+        // Pro is active and Monaco path is configured - set initial button states FIRST
         $('#base47-he-mode-classic').addClass('active');
         $('#base47-he-mode-advanced').removeClass('active');
         
@@ -704,6 +706,17 @@ function getActiveSet() {
         $('#base47-he-mode-classic-free').addClass('active');
     }
     
+    // Keyboard shortcuts for classic textarea editor
+    $(document).on('keydown', function(e) {
+        // CMD+S / Ctrl+S = Save
+        if ((e.metaKey || e.ctrlKey) && e.key === 's') {
+            e.preventDefault();
+            if ($('#base47-he-save').length && !$('#base47-he-save').prop('disabled')) {
+                $('#base47-he-save').click();
+            }
+        }
+    });
+
     function initializeMonacoEditor() {
         loadMonacoLoader(function() {
             window.require.config({
@@ -963,6 +976,24 @@ function getActiveSet() {
                 const data = resp.data || {};
                 if (data.warning_count && data.warning_count > 0) {
                     base47ShowSafetyIndicator('warnings', 'Validation warnings found (' + data.warning_count + ')');
+                    // Update validation panel — switch to warning state
+                    $('#b47-warning-count').text(data.warning_count);
+                    $('#b47-validation-count').text(data.warning_count);
+                    $('#b47-validation-icon').text('⚠');
+                    var $list = $('#b47-validation-list').empty();
+                    if (data.warnings && data.warnings.length) {
+                        data.warnings.forEach(function(w) {
+                            $list.append('<li>' + $('<span>').text(w).html() + '</li>');
+                        });
+                    }
+                    $('#b47-validation-panel').addClass('has-warnings');
+                } else {
+                    // No warnings — show green/clean state
+                    $('#b47-warning-count').text('0');
+                    $('#b47-validation-count').text('0');
+                    $('#b47-validation-icon').text('✓');
+                    $('#b47-validation-list').html('<li class="b47-validation-ok">No issues detected.</li>');
+                    $('#b47-validation-panel').removeClass('has-warnings');
                 }
 
                 // Update preview with live preview (not reload)

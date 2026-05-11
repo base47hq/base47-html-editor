@@ -4,7 +4,7 @@ Tags: html editor, html templates, code editor, live preview, shortcode template
 Requires at least: 5.0
 Tested up to: 6.9
 Requires PHP: 7.4
-Stable tag: 3.0.1
+Stable tag: 3.0.2
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -192,6 +192,17 @@ Basic HTML knowledge is recommended. Base47 HTML Editor is designed primarily fo
 8. Changelog page
 
 == Changelog ==
+
+= 3.0.2 =
+* Improved editor stability and internal architecture
+* Improved AJAX handling and admin reliability
+* Added Validation Warnings panel in the editor with detailed issue display
+* Added keyboard shortcuts bar with visual reference
+* Added template duplication in the editor toolbar
+* General compatibility improvements
+* Internal code cleanup and maintenance
+* Fixed minor UI and workflow inconsistencies
+* Improved plugin structure and maintainability
 
 = 3.0.1 =
 * Improved loader architecture and template rendering stability

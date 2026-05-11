@@ -135,6 +135,9 @@ function base47_he_editor_page() {
                     </div>
                     <div class="b47-toolbar-right">
                         <?php if ( $selected ) : ?>
+                        <button id="base47-he-duplicate" class="b47-btn b47-btn-ghost b47-btn-sm">
+                            <span class="dashicons dashicons-admin-page" style="font-size:15px;width:15px;height:15px;"></span> Duplicate
+                        </button>
                         <button id="base47-he-restore" class="b47-btn b47-btn-ghost b47-btn-sm">
                             <span class="dashicons dashicons-backup" style="font-size:15px;width:15px;height:15px;"></span> Backups
                         </button>
@@ -182,7 +185,179 @@ function base47_he_editor_page() {
         <input type="hidden" id="base47-he-current-set" value="<?php echo esc_attr( $current_set ); ?>">
         <?php wp_nonce_field( 'base47_he', 'nonce' ); ?>
 
+        <!-- Editor Footer: Validation + Shortcuts (side by side) -->
+        <div class="b47-editor-footer">
+            <!-- Left: Validation Warnings -->
+            <div class="b47-editor-footer-left" id="b47-validation-panel">
+                <div class="b47-validation-header">
+                    <span class="b47-validation-icon" id="b47-validation-icon">✓</span>
+                    <span class="b47-validation-title" id="b47-validation-title">Validation Warnings (<span id="b47-validation-count">0</span>)</span>
+                </div>
+                <ul id="b47-validation-list" class="b47-validation-list">
+                    <li class="b47-validation-ok">No issues detected. Save to validate.</li>
+                </ul>
+            </div>
+            <!-- Right: Keyboard Shortcuts -->
+            <div class="b47-editor-footer-right">
+                <div class="b47-shortcuts-title">
+                    <span class="dashicons dashicons-editor-help" style="font-size:14px;width:14px;height:14px;"></span>
+                    Keyboard Shortcuts
+                </div>
+                <div class="b47-shortcuts-list">
+                    <span class="b47-shortcut"><kbd>⌘</kbd><kbd>S</kbd> Save</span>
+                    <span class="b47-shortcut"><kbd>⌘</kbd><kbd>Z</kbd> Undo</span>
+                    <span class="b47-shortcut"><kbd>⌘</kbd><kbd>⇧</kbd><kbd>Z</kbd> Redo</span>
+                    <span class="b47-shortcut"><kbd>⌘</kbd><kbd>A</kbd> Select All</span>
+                    <span class="b47-shortcut"><kbd>⌘</kbd><kbd>C</kbd> Copy</span>
+                    <span class="b47-shortcut"><kbd>⌘</kbd><kbd>V</kbd> Paste</span>
+                    <span class="b47-shortcut"><kbd>⌘</kbd><kbd>F</kbd> Find</span>
+                    <span class="b47-shortcut"><kbd>⌘</kbd><kbd>D</kbd> Duplicate Line</span>
+                </div>
+            </div>
+        </div>
+
+        <style>
+        /* Editor Footer: Two-column layout */
+        .b47-editor-footer {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin-top: 16px;
+        }
+        @media (max-width: 900px) {
+            .b47-editor-footer { grid-template-columns: 1fr; }
+        }
+
+        /* Left: Validation Panel */
+        .b47-editor-footer-left {
+            padding: 14px 18px;
+            background: #F0FDF4;
+            border: 1px solid #BBF7D0;
+            border-radius: var(--b47-radius, 12px);
+            min-height: 60px;
+            transition: background 0.2s, border-color 0.2s;
+        }
+        .b47-editor-footer-left.has-warnings {
+            background: #FFFBEB;
+            border-color: #FDE68A;
+        }
+        .b47-validation-header {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 6px;
+        }
+        .b47-validation-icon {
+            font-size: 16px;
+            line-height: 1;
+            color: #16A34A;
+        }
+        .b47-editor-footer-left.has-warnings .b47-validation-icon {
+            color: #D97706;
+        }
+        .b47-validation-title {
+            font-size: 13px;
+            font-weight: 700;
+            color: #166534;
+        }
+        .b47-editor-footer-left.has-warnings .b47-validation-title {
+            color: #92400E;
+        }
+        .b47-validation-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .b47-validation-list li {
+            font-size: 12px;
+            color: #15803D;
+            padding: 2px 0;
+            line-height: 1.5;
+        }
+        .b47-editor-footer-left.has-warnings .b47-validation-list li {
+            color: #78350F;
+            list-style: disc;
+            margin-left: 16px;
+        }
+        .b47-validation-list li code {
+            background: rgba(0,0,0,0.05);
+            padding: 1px 5px;
+            border-radius: 3px;
+            font-size: 11px;
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        /* Right: Shortcuts */
+        .b47-editor-footer-right {
+            padding: 14px 18px;
+            background: var(--b47-bg, #F9FAFB);
+            border: 1px solid var(--b47-border, #E5E7EB);
+            border-radius: var(--b47-radius, 12px);
+        }
+        .b47-shortcuts-title {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 13px;
+            font-weight: 700;
+            color: var(--b47-text, #1F2937);
+            margin-bottom: 8px;
+        }
+        .b47-shortcuts-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        .b47-shortcut {
+            display: inline-flex;
+            align-items: center;
+            gap: 3px;
+            font-size: 12px;
+            color: var(--b47-text-secondary, #6B7280);
+        }
+        .b47-shortcut kbd {
+            display: inline-block;
+            padding: 2px 5px;
+            font-size: 11px;
+            font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+            background: #fff;
+            border: 1px solid var(--b47-border, #D1D5DB);
+            border-radius: 4px;
+            box-shadow: 0 1px 1px rgba(0,0,0,0.05);
+            color: var(--b47-text, #374151);
+            line-height: 1;
+        }
+        </style>
+
     </div>
+    </div>
+
+    <!-- Duplicate Template Modal -->
+    <div id="base47-he-duplicate-modal" class="base47-he-modal" style="display:none;">
+        <div class="base47-he-modal-content" style="background:var(--b47-card,#fff);border-radius:var(--b47-radius,12px);max-width:480px;margin:80px auto;padding:0;box-shadow:var(--b47-shadow-lg);">
+            <div style="padding:20px 24px;border-bottom:1px solid var(--b47-border,#E5E7EB);display:flex;align-items:center;justify-content:space-between;">
+                <div style="display:flex;align-items:center;gap:10px;">
+                    <span class="dashicons dashicons-admin-page" style="font-size:20px;width:20px;height:20px;color:var(--b47-primary);"></span>
+                    <h2 style="margin:0;font-size:18px;font-weight:600;color:var(--b47-text);">Duplicate Template</h2>
+                </div>
+                <span class="base47-he-modal-close" style="cursor:pointer;font-size:24px;color:var(--b47-text-muted);line-height:1;">&times;</span>
+            </div>
+            <div style="padding:20px 24px;">
+                <p style="color:var(--b47-text-secondary);font-size:13px;margin:0 0 16px;">Create a copy of the current template with a new name.</p>
+                <label for="base47-he-duplicate-name" style="font-size:13px;font-weight:600;color:var(--b47-text);display:block;margin-bottom:6px;">New Template Name</label>
+                <input type="text" id="base47-he-duplicate-name" placeholder="e.g., my-custom-page.html" style="width:100%;padding:10px 12px;border:1px solid var(--b47-border,#D1D5DB);border-radius:8px;font-size:14px;">
+                <p style="font-size:12px;color:var(--b47-text-muted);margin:8px 0 0;">Use letters, numbers, hyphens, underscores. Include .html extension.</p>
+                <div id="base47-he-duplicate-error" style="display:none;margin-top:12px;padding:10px 14px;background:#FEF2F2;border:1px solid #FECACA;border-radius:8px;">
+                    <p style="color:#DC2626;margin:0;font-size:13px;"></p>
+                </div>
+            </div>
+            <div style="padding:16px 24px;border-top:1px solid var(--b47-border,#E5E7EB);display:flex;gap:8px;justify-content:flex-end;">
+                <button id="base47-he-duplicate-confirm" class="b47-btn b47-btn-primary b47-btn-sm">
+                    <span class="dashicons dashicons-admin-page" style="font-size:14px;width:14px;height:14px;"></span> Create Duplicate
+                </button>
+                <button class="b47-btn b47-btn-ghost b47-btn-sm base47-he-modal-close">Cancel</button>
+            </div>
+        </div>
     </div>
 
     <!-- Backup & Restore Modal -->

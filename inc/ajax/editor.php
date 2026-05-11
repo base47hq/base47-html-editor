@@ -197,19 +197,84 @@ function base47_he_ajax_save_template() {
 add_action( 'wp_ajax_base47_he_save_template', 'base47_he_ajax_save_template' );
 
 /**
- * AJAX: Duplicate template — PRO ONLY
+ * AJAX: Duplicate template
  *
- * Removed from free plugin per WordPress.org free/Pro separation requirements.
+ * Creates a copy of an existing HTML template with a new filename.
+ *
+ * @since 3.0.2
  */
 function base47_he_ajax_duplicate_template() {
     check_ajax_referer( 'base47_he', 'nonce' );
+
     if ( ! base47_he_current_user_can_edit_templates() ) {
         wp_send_json_error( [ 'message' => 'Insufficient permissions.' ] );
     }
-    wp_send_json_error( [
-        'message'     => 'Template duplication is available in Base47 HTML Editor Pro.',
-        'upgrade_url' => 'https://base47.art/base47-html-editor/',
-        'pro_feature' => true,
+
+    $file     = isset( $_POST['file'] )     ? sanitize_text_field( wp_unslash( $_POST['file'] ) )     : '';
+    $set      = isset( $_POST['set'] )      ? sanitize_text_field( wp_unslash( $_POST['set'] ) )      : '';
+    $new_name = isset( $_POST['new_name'] ) ? sanitize_text_field( wp_unslash( $_POST['new_name'] ) ) : '';
+
+    // Validate required fields
+    if ( empty( $file ) || empty( $set ) || empty( $new_name ) ) {
+        wp_send_json_error( [ 'message' => 'Missing required fields (file, set, new_name).' ] );
+    }
+
+    // Only allow .html / .htm files
+    if ( ! preg_match( '/^[a-zA-Z0-9_-]+\.html?$/i', $new_name ) ) {
+        wp_send_json_error( [ 'message' => 'Invalid filename. Use only letters, numbers, hyphens, underscores, and a .html extension.' ] );
+    }
+
+    if ( ! preg_match( '/^[a-zA-Z0-9_-]+\.html?$/i', $file ) ) {
+        wp_send_json_error( [ 'message' => 'Invalid source filename.' ] );
+    }
+
+    // Block path traversal
+    if ( strpos( $file, '..' ) !== false || strpos( $new_name, '..' ) !== false || strpos( $set, '..' ) !== false ) {
+        wp_send_json_error( [ 'message' => 'Invalid path.' ] );
+    }
+
+    // Resolve source path using the shared resolver
+    $source_path = base47_he_resolve_template_path( $set, $file );
+    if ( is_wp_error( $source_path ) ) {
+        wp_send_json_error( [ 'message' => $source_path->get_error_message() ] );
+    }
+
+    // Build destination path in the same directory
+    $theme_dir = dirname( $source_path );
+    $dest_path = $theme_dir . '/' . $new_name;
+
+    // Prevent overwriting existing file
+    if ( file_exists( $dest_path ) ) {
+        wp_send_json_error( [ 'message' => 'A template with that name already exists. Please choose a different name.' ] );
+    }
+
+    // Use WP_Filesystem for the copy
+    if ( ! base47_he_init_filesystem() ) {
+        wp_send_json_error( [ 'message' => 'Filesystem unavailable.' ] );
+    }
+    global $wp_filesystem;
+
+    $content = $wp_filesystem->get_contents( $source_path );
+    if ( false === $content ) {
+        wp_send_json_error( [ 'message' => 'Could not read source template.' ] );
+    }
+
+    $written = $wp_filesystem->put_contents( $dest_path, $content, FS_CHMOD_FILE );
+    if ( ! $written ) {
+        wp_send_json_error( [ 'message' => 'Could not create duplicate file. Check directory permissions.' ] );
+    }
+
+    // Log the action
+    if ( function_exists( 'base47_he_log' ) ) {
+        $user     = wp_get_current_user();
+        $username = $user->user_login ?? 'Unknown';
+        base47_he_log( "Template duplicated: {$file} to {$new_name} (Set: {$set}) by {$username}", 'info' );
+    }
+
+    wp_send_json_success( [
+        'message'      => 'Template duplicated successfully!',
+        'new_file'     => $new_name,
+        'redirect_url' => admin_url( 'admin.php?page=base47-he-editor&set=' . urlencode( $set ) . '&file=' . urlencode( $new_name ) ),
     ] );
 }
 add_action( 'wp_ajax_base47_he_duplicate_template', 'base47_he_ajax_duplicate_template' );
